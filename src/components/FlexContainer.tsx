@@ -7,7 +7,7 @@ interface PropsFlexContainer {
 }
 export const FlexContainer = ({ name, resultado, children, isOk, isInput = false }: PropsFlexContainer) => {
   return (
-    <div className="flex flex-row gap-4 items-center mt-4 p-2">
+    <div className="flex flex-row gap-4 items-center mt-4 p-2 ">
           <div className='basis-1/3'>
             <label htmlFor={name} className='pr-2'>{isInput ? 'Ingrese su' : 'Selecciona un'} {name}:</label>
             {children}
@@ -17,7 +17,7 @@ export const FlexContainer = ({ name, resultado, children, isOk, isInput = false
                 {resultado}
             </p>
           </div>
-          <div className={`${isOk ? 'bg-blue-100' : 'bg-yellow-100'} p-2 rounded-full`}>
+          <div className={`${isOk ? 'bg-blue-100' : 'bg-yellow-100'} p-2 rounded-full mx-auto`}>
                 {isOk
                   ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
