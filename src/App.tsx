@@ -220,7 +220,7 @@ function App () {
           <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='Ingrese su uid' onChange={handleUid}/>
         </FlexContainer>
         <FlexContainer isInput={true} name='app' resultado={encoded64(app)} isOk={uid.length > 0}>
-          <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='redirectOk' onChange={handleApp}/>
+          <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='Ingrese su App' onChange={handleApp}/>
         </FlexContainer>
 
       </div>
