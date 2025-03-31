@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 function App () {
   enum Ambiente {
+    Localhost = 'Localhost',
     Desarrollo = 'Desarrollo',
     Certificacion = 'Certificación',
     Produccion = 'Producción',
@@ -11,6 +12,7 @@ function App () {
   }
   const AMBIENTE = {
     [Ambiente.SinInicializar]: 'Selecciona Ambiente',
+    [Ambiente.Localhost]: 'localhost:3002//#/auth',
     [Ambiente.Desarrollo]: 'https://stibiometricades0100.z20.web.core.windows.net/#/auth',
     [Ambiente.Certificacion]: 'https://stibiometriacrt0100.z20.web.core.windows.net/#/auth',
     [Ambiente.Produccion]: 'https://stibiometricaprd0100.z20.web.core.windows.net/#/auth'
@@ -25,6 +27,8 @@ function App () {
   const [ambiente, setAmbiente] = useState<Ambiente>(Ambiente.SinInicializar)
   const [equipo, setEquipo] = useState<string>(Ambiente.SinInicializar)
   const [token, setToken] = useState<string>('')
+  const [uid, setUid] = useState<string>('')
+  const [app, setApp] = useState<string>('')
   const [redirectOk, setRedirectOk] = useState<string>('')
   const [redirectError, setRedirectError] = useState<string>('')
   const [copiado, setCopiado] = useState(false)
@@ -39,7 +43,11 @@ function App () {
     ) {
       return errorMessages.createdUrl
     } else {
-      return `${AMBIENTE[ambiente]}/${btoa(token)}/redirect-uri/${btoa(redirectOk)}/redirect-error/${btoa(redirectError)}`
+      const Url = `${AMBIENTE[ambiente]}/${btoa(token)}/redirect-uri/${btoa(redirectOk)}/redirect-error/${btoa(redirectError)}`
+      if (uid.length > 0 || app.length > 0) {
+        return `${Url}/uid/${btoa(uid)}/app/${btoa(app)}`
+      }
+      return Url
     }
   }
   const copiarAlPortapapeles = () => {
@@ -63,6 +71,12 @@ function App () {
   }
   const handleToken = (event: React.ChangeEvent<HTMLInputElement>) => {
     setToken(event.target.value)
+  }
+  const handleUid = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUid(event.target.value)
+  }
+  const handleApp = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setApp(event.target.value)
   }
   const handleRedirectOk = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRedirectOk(event.target.value)
@@ -199,6 +213,14 @@ function App () {
         </FlexContainer>
         <FlexContainer isInput={true} name='redirectError' resultado={ValidateRedirect(redirectError, true).resultado} isOk={ValidateRedirect(redirectError, true).isOk}>
           <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='redirectOk' onChange={handleRedirectError}/>
+        </FlexContainer>
+        <hr></hr>
+        <hr></hr>
+        <FlexContainer isInput={true} name='uid' resultado={encoded64(uid)} isOk={uid.length > 0}>
+          <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='Ingrese su uid' onChange={handleUid}/>
+        </FlexContainer>
+        <FlexContainer isInput={true} name='app' resultado={encoded64(app)} isOk={uid.length > 0}>
+          <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='redirectOk' onChange={handleApp}/>
         </FlexContainer>
 
       </div>
