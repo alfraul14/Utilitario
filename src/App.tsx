@@ -29,6 +29,7 @@ function App () {
   const [token, setToken] = useState<string>('')
   const [uid, setUid] = useState<string>('')
   const [app, setApp] = useState<string>('')
+  const [ipClient, setIpClient] = useState<string>('')
   const [redirectOk, setRedirectOk] = useState<string>('')
   const [redirectError, setRedirectError] = useState<string>('')
   const [copiado, setCopiado] = useState(false)
@@ -45,7 +46,7 @@ function App () {
     } else {
       const Url = `${AMBIENTE[ambiente]}/${btoa(token)}/redirect-uri/${btoa(redirectOk)}/redirect-error/${btoa(redirectError)}`
       if (uid.length > 0 || app.length > 0) {
-        return `${Url}/uid/${btoa(uid)}/app/${btoa(app)}`
+        return `${Url}/uid/${btoa(uid)}/app/${btoa(app)}/ip-client/${btoa(ipClient)}`
       }
       return Url
     }
@@ -77,6 +78,9 @@ function App () {
   }
   const handleApp = (event: React.ChangeEvent<HTMLInputElement>) => {
     setApp(event.target.value)
+  }
+  const handleIpClient = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIpClient(event.target.value)
   }
   const handleRedirectOk = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRedirectOk(event.target.value)
@@ -221,6 +225,9 @@ function App () {
         </FlexContainer>
         <FlexContainer isInput={true} name='app' resultado={encoded64(app)} isOk={uid.length > 0}>
           <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='Ingrese su App' onChange={handleApp}/>
+        </FlexContainer>
+        <FlexContainer isInput={true} name='ipClient' resultado={encoded64(ipClient)} isOk={ipClient.length > 0}>
+          <input id="redirectError" className="border p-2 rounded-md focus:outline-none focus:border-blue-300" placeholder='Ingrese su App' onChange={handleIpClient}/>
         </FlexContainer>
 
       </div>
