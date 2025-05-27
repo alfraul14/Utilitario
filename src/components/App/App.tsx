@@ -1,5 +1,5 @@
 import './App.css'
-import { FlexContainer } from './components/FlexContainer'
+import { FlexContainer } from '../FlexContainer'
 import { useState } from 'react'
 
 function App () {
@@ -176,6 +176,7 @@ function App () {
   }
 
   return (
+        <div className="max-w-[1280px] mx-auto p-8 text-center">
 
     <div className='container'>
       <h1 className=' text-4xl  '>Generar URL</h1>
@@ -232,6 +233,7 @@ function App () {
 
       </div>
 
+    </div>
     </div>
   )
 }
