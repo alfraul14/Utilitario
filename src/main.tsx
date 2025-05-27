@@ -7,7 +7,7 @@ import AppRoutes from './components/AppRoutes.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter >
       <AppRoutes />
     </BrowserRouter>
   </React.StrictMode>

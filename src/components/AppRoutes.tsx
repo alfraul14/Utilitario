@@ -8,6 +8,7 @@ export default function AppRoutes () {
     <Routes>
       <Route path="/Utilitario" element={<App />} />
       <Route path="/Utilitario/sso" element={<Sso />} />
+      <Route path="/sso" element={<Sso />} />
     </Routes>
   )
 }
