@@ -3,6 +3,7 @@ import { FlexContainer } from '../FlexContainer'
 import { useState } from 'react'
 
 function App () {
+  console.log('sso')
   enum Ambiente {
     Localhost = 'Localhost',
     Desarrollo = 'Desarrollo',
